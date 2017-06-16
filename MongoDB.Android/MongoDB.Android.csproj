@@ -1141,7 +1141,6 @@
     <Compile Include="MongoDB.Shared\CanonicalEquatableClass.cs" />
     <Compile Include="MongoDB.Shared\CanonicalEquatableDerivedClass.cs" />
     <Compile Include="MongoDB.Shared\CanonicalEquatableStruct.cs" />
-    <Compile Include="MongoDB.Shared\GlobalAssemblyInfo.cs" />
     <Compile Include="MongoDB.Shared\Hasher.cs" />
     <Compile Include="MongoDB.Shared\IncrementalMD5.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
