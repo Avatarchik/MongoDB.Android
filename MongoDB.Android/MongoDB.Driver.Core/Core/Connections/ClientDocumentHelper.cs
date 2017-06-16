@@ -1,4 +1,4 @@
-﻿/* Copyright 2016-2017 MongoDB Inc.
+/* Copyright 2016-2017 MongoDB Inc.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -130,33 +130,11 @@ namespace MongoDB.Driver.Core.Connections
             }
 #endif
 
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                osType = "Windows";
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                osType = "Linux";
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                osType = "macOS";
-            }
-            else
-            {
-                osType = "unknown";
-            }
+            osType = Java.Lang.JavaSystem.GetProperty("os.name");
 
-            osName = RuntimeInformation.OSDescription.Trim();
+            osName = Java.Lang.JavaSystem.GetProperty("os.version");
 
-            switch (RuntimeInformation.ProcessArchitecture)
-            {
-                case Architecture.Arm: architecture = "arm"; break;
-                case Architecture.Arm64: architecture = "arm64"; break;
-                case Architecture.X64: architecture = "x86_64"; break;
-                case Architecture.X86: architecture = "x86_32"; break;
-                default: architecture = null; break;
-            }
+            architecture = Java.Lang.JavaSystem.GetProperty("os.arch");
 
             var match = Regex.Match(osName, @" (?<version>\d+\.\d[^ ]*)");
             if (match.Success)
@@ -184,7 +162,7 @@ namespace MongoDB.Driver.Core.Connections
 
         internal static string GetPlatformString()
         {
-            return RuntimeInformation.FrameworkDescription;
+            return Java.Lang.JavaSystem.GetProperty("os.name");
         }
 
         internal static BsonDocument RemoveOneOptionalField(BsonDocument clientDocument)
@@ -231,7 +209,7 @@ namespace MongoDB.Driver.Core.Connections
 
             return clientDocument;
         }
-        #endregion
+#endregion
 
     }
 }
